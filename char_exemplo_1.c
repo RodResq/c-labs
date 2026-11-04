@@ -10,5 +10,6 @@ size_t tamanho(const char *s) {
 int main(void) {
   char nome[] = "Ana";
   printf("%zu\n", tamanho(nome));
+
   return 0;
 }

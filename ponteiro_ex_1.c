@@ -13,6 +13,8 @@ int main(void) {
   printf("p = %p  (o que p guarda: igual a &a)\n", (void *)p);
   printf("*p = %d  (o que esta no endereço guardado em p)\n", *p);
 
+  printf("teste");
+  
   *p = 15;
   printf("\n depois de *p = 15: a = %d\n", a);
 
