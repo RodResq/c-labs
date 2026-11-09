@@ -1,2 +1,6 @@
+# Arquivos objetos compilados em C
 *.o
+
+# Arquivos de swap do Vim
+
 *.swp
