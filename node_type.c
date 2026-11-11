@@ -2,7 +2,7 @@
 #include <string.h>
 
 typedef enum {
-	NODE_START, NODE_END, NODE_STATE, NODE_FORK, NODE_JOIN, NODE_TYPE_COUNT
+	NODE_START, NODE_END, NODE_STATE, NODE_FORK, NODE_JOIN, NODE_DECISION, NODE_TYPE_COUNT
 } NodeType;
 
 static const char *const NODE_TYPE_NOME[NODE_TYPE_COUNT] = {
@@ -11,17 +11,18 @@ static const char *const NODE_TYPE_NOME[NODE_TYPE_COUNT] = {
 	[NODE_STATE] = "state",
 	[NODE_FORK] = "fork",
 	[NODE_JOIN] = "join",
+	[NODE_DECISION] = "decision"
 };
 
 const char *node_type_str(NodeType t) { 
-	if (t < 0 || t >= NODE_TYPE_COUNT) 
+	if (t < 0 || t >= NODE_TYPE_COUNT || NODE_TYPE_NOME[t] == NULL) 
 		return "(invalido)";
 	return NODE_TYPE_NOME[t];
 };
 
 int node_type_parse(const char *s, NodeType *saida) {
 	for (int t = 0; t < NODE_TYPE_COUNT; t++) {
-		if (strcmp(s, NODE_TYPE_NOME[t]) == 0) {
+		if (NODE_TYPE_NOME[t] != NULL && strcmp(s, NODE_TYPE_NOME[t]) == 0) {
 			*saida = (NodeType)t;
 			return 0;
 		}
@@ -36,13 +37,14 @@ const char *comportamento(NodeType t) {
 		case NODE_END: return "encerra";
 		case NODE_FORK: return "divide o token";
 		case NODE_JOIN: return "sincroniza os tokens";
+		case NODE_DECISION: return "decisao";
 		case NODE_TYPE_COUNT: break;
 	}
 	return "(invalido)";
 };
 
 int main(void) {
-	printf("sizeof(NodeKind) = %zu\n\n", sizeof(NodeType));
+	printf("sizeof(NodeType) = %zu\n\n", sizeof(NodeType));
 
 	for (int t = 0; t < NODE_TYPE_COUNT; t++) 
 		printf("%d %-12s %s\n", t, node_type_str((NodeType)t), comportamento((NodeType)t));
