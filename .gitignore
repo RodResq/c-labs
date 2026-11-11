@@ -1,6 +1,12 @@
-# Arquivos objetos compilados em C
-*.o
+#Ignorar tudo
+*
+# Libera os diretórios (para o Git conseguir entrar nas subpastas)
+!*/
 
-# Arquivos de swap do Vim
+# Libera os arquivos que devem ser rastreados
+!*.c
+!.gitignore
 
-*.swp
+!*.h
+!Makefile
+!README.md
