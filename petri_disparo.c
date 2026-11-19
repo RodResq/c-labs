@@ -1,6 +1,7 @@
 #include <stddef.h>
 #include <stdio.h>
 
+/* represena os lugares */
 enum { INICIO, A, B, A_OK, B_OK, FIM, N_LUGARES };
 
 static const char *nome_lugar[N_LUGARES] = 
@@ -45,7 +46,7 @@ int main(void) {
 	int marcacao[N_LUGARES] = { [INICIO] = 1 };
 	const int roteiro[] = { T_JOIN, T_FORK, T_A, T_JOIN, T_B, T_JOIN };
 
-	printf("MO: "); mostrar(marcacao);
+	printf("M0: "); mostrar(marcacao);
 	for (size_t i = 0; i < sizeof roteiro / sizeof roteiro[0]; i++) {
 		const Transicao *t = &rede[roteiro[i]];
 		if (!habilitada(t, marcacao)) { printf("%-8s nao habilitado\n", t->nome); continue; }
